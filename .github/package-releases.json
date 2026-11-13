@@ -1481,11 +1481,11 @@
   },
   "liberusoftware/tenancy": {
     "path": "modules/tenancy",
-    "reference": "32cdb9096690f29205255f2eafee4b2b2847fcaa",
+    "reference": "5c079502cf9c82c304f37eab141c8c7d5a77b2b7",
     "repository": "https://github.com/liberusoftware/module-tenancy",
-    "source_signature": "ee0fe468adef9cab22c285b554e35807cceb4a6e2e0dcf81a23a69ed39dcfe74",
-    "source_tree": "c9c9a1bb887b98e67db718633f7c50f40638bb54",
-    "version": "1.0.1"
+    "source_signature": "d469d350ee02b7822a5fa89a3d1bcf1bbd06fa4f8e46fc06e6644ffc88c0b8e5",
+    "source_tree": "04f69949afdcdb6c12817d536fee1706df06aa5d",
+    "version": "1.2.2"
   },
   "liberusoftware/theme-base": {
     "path": "themes/base",
@@ -1521,11 +1521,11 @@
   },
   "liberusoftware/theme-real-estate-default": {
     "path": "themes/real-estate-default",
-    "reference": "1cef0d7c958a3676fe92b4af2d8eaf9dcac90948",
+    "reference": "08badf2eb215538634937ecd3b111799bf945109",
     "repository": "https://github.com/liberusoftware/theme-real-estate-default",
-    "source_signature": "04b482da02a3588a3f8da43858b5d2ff5ab17ee5eed9912cab12cd96225e2da3",
-    "source_tree": "6a3e5f72c37a5cf7ba2cd60da55ed7ec033cd13f",
-    "version": "1.0.1"
+    "source_signature": "838ec01fbf65f390f9e9a4ff06661524780eee74b89ea2c7fcfec8cfeeb0eccc",
+    "source_tree": "da0fa600837706cc811e92b4fb12f7d42aed48c0",
+    "version": "1.0.2"
   },
   "liberusoftware/theme-support": {
     "path": "modules/theme-support",
