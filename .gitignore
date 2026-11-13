@@ -63,3 +63,6 @@ docs/superpowers
 
 # local background refactor output
 /real-estate-refactor.log
+# Installed from Packagist, not carried here.
+/modules/module-manager/
+/modules/module-manager-filament/

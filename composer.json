@@ -27,6 +27,8 @@
                 "symlink": false
             },
             "exclude": [
+                "liberusoftware/module-manager",
+                "liberusoftware/module-manager-filament",
                 "liberusoftware/tenancy"
             ]
         },
@@ -494,21 +496,7 @@
         },
         {
             "type": "path",
-            "url": "modules/module-manager-filament",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
             "url": "modules/module-manager-livewire",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "modules/module-manager",
             "options": {
                 "symlink": true
             }
@@ -1433,9 +1421,7 @@
                     "liberusoftware/localization-core": "1.4.1",
                     "liberusoftware/localization-mymemory": "1.4.1",
                     "liberusoftware/module-manager-api": "1.0.0",
-                    "liberusoftware/module-manager-filament": "1.4.1",
                     "liberusoftware/module-manager-livewire": "1.0.1",
-                    "liberusoftware/module-manager": "1.4.2",
                     "liberusoftware/notifications-api": "1.0.0",
                     "liberusoftware/notifications-filament": "1.0.1",
                     "liberusoftware/notifications-livewire": "1.0.1",
@@ -1563,6 +1549,8 @@
                 }
             },
             "exclude": [
+                "liberusoftware/module-manager",
+                "liberusoftware/module-manager-filament",
                 "liberusoftware/tenancy"
             ]
         },
@@ -1667,9 +1655,9 @@
         "liberusoftware/localization-core-filament": "^1.0",
         "liberusoftware/localization-core-livewire": "^1.0",
         "liberusoftware/localization-mymemory": "^1.0",
-        "liberusoftware/module-manager": "^1.0",
+        "liberusoftware/module-manager": "^1.9",
         "liberusoftware/module-manager-api": "^1.0",
-        "liberusoftware/module-manager-filament": "^1.1",
+        "liberusoftware/module-manager-filament": "^1.11",
         "liberusoftware/module-manager-livewire": "^1.0",
         "liberusoftware/notifications": "^1.0",
         "liberusoftware/notifications-api": "^1.0",
