@@ -10,6 +10,7 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Database\Eloquent\Model;
 use Liberu\RealEstate\Properties\Models\Region;
 use Liberu\RealEstate\PropertiesFilament\Resources\RegionResource\Pages\CreateRegion;
@@ -46,9 +47,23 @@ final class RegionResource extends Resource
         return auth()->user()?->can('ViewAny:Region') ?? false;
     }
 
+    public static function getViewAnyAuthorizationResponse(): Response
+    {
+        return self::canViewAny()
+            ? parent::getViewAnyAuthorizationResponse()
+            : Response::deny();
+    }
+
     public static function canCreate(): bool
     {
         return auth()->user()?->can('Create:Region') ?? false;
+    }
+
+    public static function getCreateAuthorizationResponse(): Response
+    {
+        return self::canCreate()
+            ? parent::getCreateAuthorizationResponse()
+            : Response::deny();
     }
 
     public static function canEdit(Model $record): bool
@@ -56,9 +71,23 @@ final class RegionResource extends Resource
         return auth()->user()?->can('Update:Region') ?? false;
     }
 
+    public static function getEditAuthorizationResponse(Model $record): Response
+    {
+        return self::canEdit($record)
+            ? parent::getEditAuthorizationResponse($record)
+            : Response::deny();
+    }
+
     public static function canDelete(Model $record): bool
     {
         return auth()->user()?->can('Delete:Region') ?? false;
+    }
+
+    public static function getDeleteAuthorizationResponse(Model $record): Response
+    {
+        return self::canDelete($record)
+            ? parent::getDeleteAuthorizationResponse($record)
+            : Response::deny();
     }
 
     public static function isScopedToTenant(): bool
