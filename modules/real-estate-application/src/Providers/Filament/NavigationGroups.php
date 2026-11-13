@@ -103,7 +103,7 @@ final class NavigationGroups
                 20 => 'Liberu\\Foundation\\ApplicationFilament\\Pages\\Overview',
                 30 => 'Liberu\\Foundation\\LocalizationCoreFilament\\Pages\\Overview',
                 40 => 'Liberu\\Foundation\\CurrencyContextFilament\\Pages\\Overview',
-                50 => 'Liberu\\Foundation\\ModuleManagerFilament\\Pages\\FoundationOperations',
+                50 => 'Liberu\\Foundation\\ModuleManagerFilament\\Pages\\ModuleManagement',
             ],
             __('filament.nav_groups.integrations_api') => [
                 10 => 'Liberu\\Foundation\\IntegrationsFilament\\Pages\\Overview',
