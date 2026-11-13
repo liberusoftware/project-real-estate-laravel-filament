@@ -13,6 +13,7 @@ use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Liberu\Foundation\Audit\Models\ActivityLogEntry;
@@ -48,14 +49,35 @@ final class ActivityLogResource extends Resource
         return auth()->user()?->can('ViewAny:ActivityLogEntry') ?? false;
     }
 
+    public static function getViewAnyAuthorizationResponse(): Response
+    {
+        return self::canViewAny()
+            ? parent::getViewAnyAuthorizationResponse()
+            : Response::deny();
+    }
+
     public static function canView(Model $record): bool
     {
         return self::canViewAny();
     }
 
+    public static function getViewAuthorizationResponse(Model $record): Response
+    {
+        return self::canView($record)
+            ? parent::getViewAuthorizationResponse($record)
+            : Response::deny();
+    }
+
     public static function canCreate(): bool
     {
         return false;
+    }
+
+    public static function getCreateAuthorizationResponse(): Response
+    {
+        return self::canCreate()
+            ? parent::getCreateAuthorizationResponse()
+            : Response::deny();
     }
 
     public static function isScopedToTenant(): bool
