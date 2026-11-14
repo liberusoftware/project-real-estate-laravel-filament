@@ -25,7 +25,7 @@ final class OpenExchangeRateApiProvider implements ExchangeRateProvider
         }
 
         $rates = $this->rates($base->code);
-        if ($rates === null || ! isset($rates['rates'][$quote->code]) || ! is_numeric($rates['rates'][$quote->code]) || (float) $rates['rates'][$quote->code] <= 0) {
+        if (! isset($rates['rates'][$quote->code]) || ! is_numeric($rates['rates'][$quote->code]) || (float) $rates['rates'][$quote->code] <= 0) {
             return null;
         }
 
@@ -42,8 +42,8 @@ final class OpenExchangeRateApiProvider implements ExchangeRateProvider
         );
     }
 
-    /** @return array{rates: array<string, float>, time_last_update_unix?: int}|null */
-    private function rates(string $base): ?array
+    /** @return array{rates: array<string, mixed>, time_last_update_unix?: mixed} */
+    private function rates(string $base): array
     {
         $ttl = (int) config('currency.stale_after_seconds', 86400);
 

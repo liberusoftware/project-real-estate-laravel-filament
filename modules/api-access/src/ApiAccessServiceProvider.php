@@ -25,7 +25,7 @@ final class ApiAccessServiceProvider extends ServiceProvider
         // ("Rate limiter [api] is not defined") the moment it's hit over
         // real HTTP. config('api-access.rate_limit') ("60,1" = 60/min) was
         // already there, unused — this is what it was for.
-        RateLimiter::for('api', function (Request $request) {
+        RateLimiter::for('api', function (Request $request): Limit {
             [$max, $minutes] = array_pad(explode(',', (string) config('api-access.rate_limit', '60,1'), 2), 2, '1');
 
             return Limit::perMinutes((int) $minutes, (int) $max)->by($request->user()?->getAuthIdentifier() ?? $request->ip());

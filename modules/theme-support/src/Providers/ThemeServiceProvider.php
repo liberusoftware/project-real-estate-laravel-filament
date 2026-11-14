@@ -31,9 +31,7 @@ class ThemeServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (is_dir(__DIR__.'/../../resources/views')) {
-            $this->loadViewsFrom(__DIR__.'/../../resources/views', 'theme');
-        }
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'theme');
         if ($this->app->runningInConsole()) {
             $this->commands([ThemeCacheCommand::class, ThemeClearCommand::class, ThemeValidateCommand::class]);
         }
@@ -43,10 +41,6 @@ class ThemeServiceProvider extends ServiceProvider
         $this->registerBladeDirectives();
 
         View::composer('*', function (ViewContract $view) use ($themeManager): void {
-            if (str_starts_with($view->name(), 'wayfinder::')) {
-                return;
-            }
-
             // ponytail: re-derive per view render, not just once at boot. ThemeManager
             // is a singleton resolved once per app lifecycle (long-lived under Octane;
             // reused across a whole test method under Pest) — without this, an
@@ -68,17 +62,32 @@ class ThemeServiceProvider extends ServiceProvider
         $themeManager = $this->app->make(ThemeManager::class);
 
         $user = auth()->user();
-        if ($user instanceof Authenticatable && is_string($user->theme_preference) && $user->theme_preference !== '' && $themeManager->themeExists($user->theme_preference)) {
-            return $user->theme_preference;
+        $preference = $user instanceof Authenticatable
+            ? $this->resolvePreference(data_get($user, 'theme_preference'), $themeManager)
+            : null;
+        if ($preference !== null) {
+            return $preference;
         }
 
-        $session = session('theme_preference');
-        if (is_string($session) && $session !== '' && $themeManager->themeExists($session)) {
+        $session = $this->resolvePreference(session('theme_preference'), $themeManager);
+        if ($session !== null) {
             return $session;
         }
 
         // Admin-selected site-wide theme (validated; safe fallback to config default).
         return $themeManager->getSiteTheme();
+    }
+
+    protected function resolvePreference(mixed $preference, ThemeManager $themeManager): ?string
+    {
+        if (! is_string($preference) || $preference === '') {
+            return null;
+        }
+
+        $aliases = config('theme.preference_aliases', []);
+        $resolved = is_array($aliases) ? ($aliases[$preference] ?? $preference) : $preference;
+
+        return is_string($resolved) && $resolved !== '' && $themeManager->themeExists($resolved) ? $resolved : null;
     }
 
     /**

@@ -4,7 +4,6 @@ namespace Liberu\Foundation\OrganizationsFilament;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
-use Liberu\Foundation\FilamentClusters\Clusters\UsersCluster;
 use Liberu\Foundation\OrganizationsFilament\Resources\TeamResource;
 
 final class OrganizationsFilamentPlugin implements Plugin
@@ -21,7 +20,6 @@ final class OrganizationsFilamentPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        $panel->discoverClusters(in: dirname((new \ReflectionClass(UsersCluster::class))->getFileName()), for: 'Liberu\\Foundation\\FilamentClusters\\Clusters');
         $panel->resources([TeamResource::class]);
     }
 
