@@ -23,7 +23,7 @@ final class UpdateValuation
         }
         if (array_key_exists('status', $attributes)) {
             $status = ValuationStatus::tryFrom((string) $attributes['status']);
-            if ($status === null || ! $valuation->canTransitionTo($status)) {
+            if ($status === null || ($status !== $valuation->status && ! $valuation->canTransitionTo($status))) {
                 throw ValidationException::withMessages(['status' => 'That valuation status transition is not allowed.']);
             }
         }

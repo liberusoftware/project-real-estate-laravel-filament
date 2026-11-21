@@ -46,11 +46,12 @@ final class OfferController
 
     public function update(Request $request, Offer $offer, UpdateOffer $update): JsonResponse
     {
-        $teamId = $request->user()?->current_team_id;
-        abort_unless((string) $teamId === (string) $offer->team_id, 404);
+        $user = $request->user();
+        $teamId = $user?->current_team_id;
+        abort_unless($teamId !== null && (string) $teamId === (string) $offer->team_id, 404);
         $data = $request->validate(['subject' => ['sometimes', 'string', 'max:255'], 'amount' => ['sometimes', 'numeric', 'min:0'], 'currency' => ['sometimes', 'string', 'size:3'], 'terms' => ['sometimes', 'array'], 'qualification' => ['sometimes', 'array'], 'negotiation' => ['sometimes', 'array'], 'proof' => ['sometimes', 'array'], 'decision_history' => ['sometimes', 'array'], 'accepted_controls' => ['sometimes', 'array'], 'mortgage_status' => ['nullable', 'string'], 'chain_information' => ['nullable', 'string'], 'conditions' => ['nullable', 'string']]);
 
-        return (new OfferResource($update->handle($offer, $teamId, $data)))->response();
+        return (new OfferResource($update->handle($offer, $teamId, $user->getAuthIdentifier(), $data)))->response();
     }
 
     public function destroy(Request $request, Offer $offer, DeleteOffer $delete): Response

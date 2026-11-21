@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Liberu\RealEstate\OffersLivewire\Components;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Liberu\RealEstate\Offers\Application\TransitionOffer;
 use Liberu\RealEstate\Offers\Domain\OfferStatus;
 use Liberu\RealEstate\Offers\Models\Offer;
@@ -18,20 +19,20 @@ final class OfferList extends Component
 
     public function submitOffer(int $offerId): void
     {
-        $this->transition($offerId, OfferStatus::Submitted);
+        $this->transitionOffer($offerId, OfferStatus::Submitted);
     }
 
     public function acceptOffer(int $offerId): void
     {
-        $this->transition($offerId, OfferStatus::Accepted);
+        $this->transitionOffer($offerId, OfferStatus::Accepted);
     }
 
     public function rejectOffer(int $offerId): void
     {
-        $this->transition($offerId, OfferStatus::Rejected);
+        $this->transitionOffer($offerId, OfferStatus::Rejected);
     }
 
-    private function transition(int $offerId, OfferStatus $status): void
+    private function transitionOffer(int $offerId, OfferStatus $status): void
     {
         $user = auth()->user();
         abort_unless($user?->current_team_id !== null, 403);
@@ -46,7 +47,9 @@ final class OfferList extends Component
     public function render(): View
     {
         $teamId = auth()->user()?->current_team_id;
-        $offers = $teamId === null ? collect() : Offer::query()->forTeam($teamId)->when($this->search !== '', fn ($query) => $query->where('subject', 'like', '%'.$this->search.'%'))->latest()->paginate(20);
+        $offers = $teamId === null
+            ? new LengthAwarePaginator([], 0, 20)
+            : Offer::query()->forTeam($teamId)->when($this->search !== '', fn ($query) => $query->where('subject', 'like', '%'.$this->search.'%'))->latest()->paginate(20);
 
         return view('real-estate-offers-livewire::offer-list', ['offers' => $offers]);
     }

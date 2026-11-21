@@ -57,8 +57,10 @@ final class SalesProgressionController
     {
         $teamId = $request->user()?->current_team_id;
         abort_unless((string) $teamId === (string) $salesProgression->team_id, 404);
+        $target = SalesProgressionStatus::tryFrom($status);
+        abort_unless($target !== null, 404);
 
-        return (new SalesProgressionResource($transition->handle($salesProgression, $teamId, SalesProgressionStatus::from($status))))->response();
+        return (new SalesProgressionResource($transition->handle($salesProgression, $teamId, $target)))->response();
     }
 
     public function updateSection(Request $request, SalesProgression $salesProgression, string $section, UpdateSalesProgressionSection $update): JsonResponse

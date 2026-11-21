@@ -16,6 +16,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\Rule;
 use Liberu\RealEstate\SalesProgression\Application\DeleteSalesProgression;
 use Liberu\RealEstate\SalesProgression\Application\TransitionSalesProgression;
 use Liberu\RealEstate\SalesProgression\Application\UpdateSalesProgressionSection;
@@ -68,7 +69,13 @@ final class SalesProgressionResource extends Resource
             EditAction::make(),
             Action::make('exchange')->requiresConfirmation()->action(fn (Model $record): SalesProgression => app(TransitionSalesProgression::class)->handle($record, (int) auth()->user()->current_team_id, SalesProgressionStatus::Exchanged)),
             Action::make('complete')->requiresConfirmation()->action(fn (Model $record): SalesProgression => app(TransitionSalesProgression::class)->handle($record, (int) auth()->user()->current_team_id, SalesProgressionStatus::Completed)),
-            Action::make('section')->form([TextInput::make('section')->required(), Textarea::make('value')->json()->required()])->action(fn (Model $record, array $data): SalesProgression => app(UpdateSalesProgressionSection::class)->handle($record, (int) auth()->user()->current_team_id, SalesProgressionSection::from($data['section']), $data['value'])),
+            Action::make('section')
+                ->form([
+                    TextInput::make('section')->required()->rule(Rule::enum(SalesProgressionSection::class)),
+                    Textarea::make('value')->json()->required()
+                        ->dehydrateStateUsing(fn (string $state): array => (array) json_decode($state, true, flags: JSON_THROW_ON_ERROR)),
+                ])
+                ->action(fn (Model $record, array $data): SalesProgression => app(UpdateSalesProgressionSection::class)->handle($record, auth()->user()->current_team_id, SalesProgressionSection::from($data['section']), $data['value'])),
             DeleteAction::make()->action(function (Model $record): void {
                 $teamId = auth()->user()?->current_team_id;
                 abort_unless($teamId !== null, 403);

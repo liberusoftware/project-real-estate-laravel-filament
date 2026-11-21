@@ -54,30 +54,38 @@ final class MatchProfileResource extends Resource
             Section::make(__('filament.match_profile.sections.criteria'))
                 ->description(__('filament.match_profile.sections.criteria_description'))
                 ->schema([
-                    Textarea::make('requirements')->label(__('filament.match_profile.fields.requirements'))->json()->columnSpanFull(),
-                    Textarea::make('affordability')->label(__('filament.match_profile.fields.affordability'))->json()->columnSpanFull(),
-                    Textarea::make('preferences')->label(__('filament.match_profile.fields.preferences'))->json()->columnSpanFull(),
-                    Textarea::make('exclusions')->label(__('filament.match_profile.fields.exclusions'))->json()->columnSpanFull(),
+                    self::jsonField('requirements')->label(__('filament.match_profile.fields.requirements'))->columnSpanFull(),
+                    self::jsonField('affordability')->label(__('filament.match_profile.fields.affordability'))->columnSpanFull(),
+                    self::jsonField('preferences')->label(__('filament.match_profile.fields.preferences'))->columnSpanFull(),
+                    self::jsonField('exclusions')->label(__('filament.match_profile.fields.exclusions'))->columnSpanFull(),
                 ]),
             Section::make(__('filament.match_profile.sections.tracking'))
                 ->schema([
-                    Textarea::make('alerts')->label(__('filament.match_profile.fields.alerts'))->json()->columnSpanFull(),
-                    Textarea::make('feedback')->label(__('filament.match_profile.fields.feedback'))->json()->columnSpanFull(),
+                    self::jsonField('alerts')->label(__('filament.match_profile.fields.alerts'))->columnSpanFull(),
+                    self::jsonField('feedback')->label(__('filament.match_profile.fields.feedback'))->columnSpanFull(),
                 ]),
         ]);
+    }
+
+    private static function jsonField(string $name): Textarea
+    {
+        return Textarea::make($name)
+            ->json()
+            ->formatStateUsing(fn (mixed $state): string => is_array($state) ? json_encode($state, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT) : (string) $state)
+            ->dehydrateStateUsing(fn (?string $state): array => (array) json_decode($state ?? '', true));
     }
 
     public static function table(Table $table): Table
     {
         return $table->columns([TextColumn::make('subject')->label(__('filament.match_profile.fields.subject'))->searchable(), TextColumn::make('score')->label(__('filament.match_profile.fields.score'))->sortable(), TextColumn::make('created_at')->label(__('filament.match_profile.fields.created_at'))->dateTime()->sortable()])->recordActions([
             EditAction::make(),
-            Action::make('calculate_score')->form([Textarea::make('criteria')->json()->required(), Textarea::make('property')->json()->required()])->action(fn (MatchProfile $record, array $data): MatchProfile => tap($record, function (MatchProfile $record) use ($data): void {
+            Action::make('calculate_score')->form([self::jsonField('criteria')->required(), self::jsonField('property')->required()])->action(fn (MatchProfile $record, array $data): MatchProfile => tap($record, function (MatchProfile $record) use ($data): void {
                 $score = app(CalculateMatchScore::class)->handle($data['criteria'], $data['property']);
                 $record->forceFill(['score' => (int) round($score['match_score'])])->save();
             })),
             Action::make('recommend_properties')
                 ->label('Recommend properties')
-                ->form([Textarea::make('criteria')->json()->required(), Textarea::make('properties')->json()->required(), TextInput::make('limit')->numeric()->minValue(1)->maxValue(100)->default(6)])
+                ->form([self::jsonField('criteria')->required(), self::jsonField('properties')->required(), TextInput::make('limit')->numeric()->minValue(1)->maxValue(100)->default(6)])
                 ->action(function (array $data): void {
                     $recommendations = app(RankPropertyRecommendations::class)->handle($data['criteria'], $data['properties'], (int) $data['limit']);
                     Notification::make()->title(count($recommendations).' properties recommended')->success()->send();

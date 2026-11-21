@@ -23,8 +23,11 @@ final class CreateViewing
         if ($starts === null) {
             throw ValidationException::withMessages(['starts_at' => 'A viewing start time is required.']);
         }
-        $ends = $attributes['ends_at'] ?? now()->parse($starts)->addHour();
-        if (now()->parse($starts)->isPast()) {
+        $starts = now()->parse($starts)->setTimezone(config('app.timezone'));
+        $ends = isset($attributes['ends_at'])
+            ? now()->parse($attributes['ends_at'])->setTimezone(config('app.timezone'))
+            : $starts->copy()->addHour();
+        if ($starts->isPast()) {
             throw ValidationException::withMessages(['starts_at' => 'A viewing must be scheduled in the future.']);
         }
         $conflict = Viewing::query()->forTeam($teamId)->where('property_id', $attributes['property_id'] ?? null)->whereIn('status', [ViewingStatus::Requested, ViewingStatus::Confirmed])->where('starts_at', '<', $ends)->where(function ($query) use ($starts): void {

@@ -14,13 +14,22 @@
         <testsuite name="Architecture">
             <directory>tests/Architecture</directory>
         </testsuite>
+        <testsuite name="Portable module tests">
+            <file>modules/integrations/tests/Unit/OptionalMarketingTablesTest.php</file>
+            <file>modules/organizations-teams/tests/Unit/OptionalResourceMigrationsTest.php</file>
+            <file>modules/organizations-teams/tests/Unit/TenantModelDiscoveryTest.php</file>
+            <file>modules/roles-permissions/tests/Unit/PortableRoleMigrationsTest.php</file>
+        </testsuite>
     </testsuites>
-    <!-- The application release gate is intentionally scoped to the host. The expanded
-         module/theme report is generated with phpunit.coverage.xml. -->
+    <!-- The release gate covers the host and module PHP code. The expanded report
+         in phpunit.coverage.xml also includes theme source. -->
     <source>
         <include>
             <directory>app</directory>
             <directory>modules/*/src</directory>
+            <directory>modules/*/routes</directory>
+            <directory>modules/*/config</directory>
+            <directory>modules/*/database</directory>
         </include>
     </source>
     <php>
