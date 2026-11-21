@@ -11,6 +11,7 @@ final class ViewingsServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'real-estate-viewings');
     }
 
     public function register(): void

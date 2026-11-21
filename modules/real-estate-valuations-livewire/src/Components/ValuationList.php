@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Liberu\RealEstate\ValuationsLivewire\Components;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Liberu\RealEstate\Valuations\Application\CompleteValuation;
 use Liberu\RealEstate\Valuations\Application\ConvertValuation;
 use Liberu\RealEstate\Valuations\Application\ScheduleValuation;
@@ -52,12 +53,14 @@ final class ValuationList extends Component
     public function render(): View
     {
         $teamId = auth()->user()?->current_team_id;
-        $valuations = $teamId === null ? collect() : Valuation::query()->forTeam($teamId)->when($this->search !== '', fn ($query) => $query->where('subject', 'like', '%'.$this->search.'%'))->latest()->paginate(20);
+        $valuations = $teamId === null
+            ? new LengthAwarePaginator([], 0, 20)
+            : Valuation::query()->forTeam($teamId)->when($this->search !== '', fn ($query) => $query->where('subject', 'like', '%'.$this->search.'%'))->latest()->paginate(20);
 
         return view('real-estate-valuations-livewire::valuation-list', ['valuations' => $valuations]);
     }
 
-    /** @param callable(Valuation): void $action */
+    /** @param callable(Valuation, int|string): void $action */
     private function runForCurrentTeam(int $valuationId, callable $action): void
     {
         $teamId = auth()->user()?->current_team_id;
@@ -68,7 +71,7 @@ final class ValuationList extends Component
         }
 
         try {
-            $action(Valuation::query()->forTeam($teamId)->findOrFail($valuationId));
+            $action(Valuation::query()->forTeam($teamId)->findOrFail($valuationId), $teamId);
             $this->error = null;
         } catch (\Throwable $exception) {
             $this->error = $exception->getMessage();

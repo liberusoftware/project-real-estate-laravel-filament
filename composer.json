@@ -314,5 +314,136 @@
     "support": {
         "issues": "https://github.com/liberusoftware/project-real-estate-laravel-filament/issues",
         "source": "https://github.com/liberusoftware/project-real-estate-laravel-filament"
-    }
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-settings-livewire.git",
+            "only": [
+                "liberusoftware/settings-livewire"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-scheduler-queues-livewire.git",
+            "only": [
+                "liberusoftware/scheduler-queues-livewire"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-roles-permissions-livewire.git",
+            "only": [
+                "liberusoftware/roles-permissions-livewire"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-module-manager-livewire.git",
+            "only": [
+                "liberusoftware/module-manager-livewire"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-module-manager-filament.git",
+            "only": [
+                "liberusoftware/module-manager-filament"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-localization-mymemory.git",
+            "only": [
+                "liberusoftware/localization-mymemory"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-settings.git",
+            "only": [
+                "liberusoftware/settings"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-theme-support.git",
+            "only": [
+                "liberusoftware/theme-support"
+            ]
+        },
+        {
+            "type": "path",
+            "url": "modules/localization-core-livewire",
+            "only": [
+                "liberusoftware/localization-core-livewire"
+            ],
+            "options": {
+                "symlink": false
+            }
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-localization-core.git",
+            "only": [
+                "liberusoftware/localization-core"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-theme-support-livewire.git",
+            "only": [
+                "liberusoftware/theme-support-livewire"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-organizations-teams.git",
+            "only": [
+                "liberusoftware/organizations-teams"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-roles-permissions.git",
+            "only": [
+                "liberusoftware/roles-permissions"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-integrations.git",
+            "only": [
+                "liberusoftware/integrations"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-module-manager.git",
+            "only": [
+                "liberusoftware/module-manager"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-sessions-devices.git",
+            "only": [
+                "liberusoftware/sessions-devices"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-two-factor-authentication.git",
+            "only": [
+                "liberusoftware/two-factor-authentication"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liberusoftware/module-identity-socialstream.git",
+            "only": [
+                "liberusoftware/identity-socialstream"
+            ]
+        }
+    ]
 }

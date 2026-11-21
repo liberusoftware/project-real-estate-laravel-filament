@@ -20,7 +20,7 @@ final class Idempotency
             return $next($request);
         }
 
-        $identity = sprintf('%s:%s', (string) $request->user()?->getAuthIdentifier(), (string) $request->user()?->current_team_id);
+        $identity = sprintf('%s:%s', (string) $request->user()?->getAuthIdentifier(), (string) data_get($request->user(), 'current_team_id'));
         $existing = $this->store->begin($identity, $key, (string) $request->getContent());
         if ($existing !== null) {
             if ($existing->response_body === null) {
@@ -32,9 +32,23 @@ final class Idempotency
                 ->header('Idempotency-Replayed', 'true');
         }
 
-        $response = $next($request);
-        $this->store->complete($identity, $key, $response->getStatusCode(), $response->getContent());
+        try {
+            $response = $next($request);
+        } catch (\Throwable $exception) {
+            $this->store->forget($identity, $key);
 
-        return $response->header('Idempotency-Key', $key);
+            throw $exception;
+        }
+
+        $body = $response->getContent();
+        if ($body === false || $response->getStatusCode() >= 500) {
+            $this->store->forget($identity, $key);
+        } else {
+            $this->store->complete($identity, $key, $response->getStatusCode(), $body);
+        }
+
+        $response->headers->set('Idempotency-Key', $key);
+
+        return $response;
     }
 }

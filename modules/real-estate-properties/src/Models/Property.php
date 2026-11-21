@@ -58,6 +58,8 @@ final class Property extends Model
             'characteristics' => 'array',
             'utilities' => 'array',
             'features' => 'array',
+            'parking' => 'array',
+            'gardens' => 'array',
             'structured_address' => 'array',
             'epc' => 'array',
             'floor_plan_data' => 'array',

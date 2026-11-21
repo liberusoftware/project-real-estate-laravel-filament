@@ -20,16 +20,22 @@ final class SalesProgressionList extends Component
     /** @param array<string, mixed> $value */
     public function updateSection(int $progressionId, string $section, array $value): void
     {
-        $teamId = (int) auth()->user()->current_team_id;
+        $teamId = auth()->user()?->current_team_id;
+        abort_unless($teamId !== null, 403);
+        $target = SalesProgressionSection::tryFrom($section);
+        abort_unless($target !== null, 404);
         $progression = SalesProgression::query()->forTeam($teamId)->findOrFail($progressionId);
-        app(UpdateSalesProgressionSection::class)->handle($progression, $teamId, SalesProgressionSection::from($section), $value);
+        app(UpdateSalesProgressionSection::class)->handle($progression, $teamId, $target, $value);
     }
 
-    public function transition(int $progressionId, string $status): void
+    public function transitionProgression(int $progressionId, string $status): void
     {
-        $teamId = (int) auth()->user()->current_team_id;
+        $teamId = auth()->user()?->current_team_id;
+        abort_unless($teamId !== null, 403);
+        $target = SalesProgressionStatus::tryFrom($status);
+        abort_unless($target !== null, 404);
         $progression = SalesProgression::query()->forTeam($teamId)->findOrFail($progressionId);
-        app(TransitionSalesProgression::class)->handle($progression, $teamId, SalesProgressionStatus::from($status));
+        app(TransitionSalesProgression::class)->handle($progression, $teamId, $target);
     }
 
     public function render(): mixed

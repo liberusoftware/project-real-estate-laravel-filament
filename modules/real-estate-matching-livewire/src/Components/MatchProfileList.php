@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Liberu\RealEstate\MatchingLivewire\Components;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Liberu\RealEstate\Matching\Application\CalculateMatchScore;
 use Liberu\RealEstate\Matching\Application\UpdateMatchProfileSection;
 use Liberu\RealEstate\Matching\Domain\MatchProfileSection;
@@ -26,7 +27,8 @@ final class MatchProfileList extends Component
     /** @param array<string, mixed> $value */
     public function updateSection(int $profileId, string $section, array $value): void
     {
-        $teamId = (int) auth()->user()->current_team_id;
+        $teamId = auth()->user()?->current_team_id;
+        abort_unless($teamId !== null, 403);
         $profile = MatchProfile::query()->forTeam($teamId)->findOrFail($profileId);
         app(UpdateMatchProfileSection::class)->handle($profile, $teamId, MatchProfileSection::from($section), $value);
     }
@@ -34,7 +36,9 @@ final class MatchProfileList extends Component
     public function render(): View
     {
         $teamId = auth()->user()?->current_team_id;
-        $profiles = $teamId === null ? collect() : MatchProfile::query()->forTeam($teamId)->when($this->search !== '', fn ($query) => $query->where('subject', 'like', '%'.$this->search.'%'))->latest()->paginate(20);
+        $profiles = $teamId === null
+            ? new LengthAwarePaginator([], 0, 20)
+            : MatchProfile::query()->forTeam($teamId)->when($this->search !== '', fn ($query) => $query->where('subject', 'like', '%'.$this->search.'%'))->latest()->paginate(20);
 
         return view('real-estate-matching-livewire::match-profile-list', ['profiles' => $profiles]);
     }

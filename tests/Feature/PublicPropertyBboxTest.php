@@ -54,3 +54,55 @@ it('scopes properties to a rectangle without loading unrelated rows', function (
 
     expect($ids)->toContain($near->id)->not->toContain($far->id);
 });
+
+it('applies the public catalog filters and supported sort orders', function (): void {
+    $team = Team::factory()->create();
+
+    $affordable = app(CreateProperty::class)->handle($team->id, $team->user_id, [
+        'address' => 'Affordable family home', 'price' => 200000, 'bedrooms' => 3,
+        'area_sqft' => 1200, 'property_type' => 'house',
+    ]);
+    $affordable->forceFill(['status' => PropertyStatus::Available])->save();
+
+    $premium = app(CreateProperty::class)->handle($team->id, $team->user_id, [
+        'address' => 'Premium apartment', 'price' => 500000, 'bedrooms' => 5,
+        'area_sqft' => 900, 'property_type' => 'apartment',
+    ]);
+    $premium->forceFill(['status' => PropertyStatus::Published])->save();
+
+    $draft = app(CreateProperty::class)->handle($team->id, $team->user_id, [
+        'address' => 'Hidden draft', 'price' => 100000, 'bedrooms' => 2,
+    ]);
+
+    $this->getJson('/api/v1/public/properties?type=house&deal_type=sale&min_price=150000&max_price=250000&rooms=3,invalid&page_size=1')
+        ->assertSuccessful()
+        ->assertJsonCount(1, 'data')
+        ->assertJsonPath('data.0.id', $affordable->id);
+
+    $this->getJson('/api/v1/public/properties?sort=price_asc')
+        ->assertSuccessful()
+        ->assertJsonPath('data.0.id', $affordable->id);
+
+    $this->getJson('/api/v1/public/properties?sort=price_desc&rooms=5')
+        ->assertSuccessful()
+        ->assertJsonPath('data.0.id', $premium->id);
+
+    $this->getJson('/api/v1/public/properties?sort=area_desc')
+        ->assertSuccessful()
+        ->assertJsonPath('data.0.id', $affordable->id)
+        ->assertJsonMissing(['id' => $draft->id]);
+});
+
+it('returns an empty catalog without a team and hides private properties from the detail endpoint', function (): void {
+    $this->getJson('/api/v1/public/properties')->assertSuccessful()->assertJsonCount(0, 'data');
+
+    $team = Team::factory()->create();
+    $property = app(CreateProperty::class)->handle($team->id, $team->user_id, ['address' => 'Private draft']);
+
+    $this->getJson('/api/v1/public/properties/'.$property->id)->assertNotFound();
+
+    $property->forceFill(['status' => PropertyStatus::Published])->save();
+    $this->getJson('/api/v1/public/properties/'.$property->id)->assertSuccessful();
+
+    expect($property->fresh()->views_count)->toBe(1);
+});

@@ -51,13 +51,23 @@ final class OfferResource extends Resource
                 ]),
             Section::make(__('filament.offer.sections.details'))
                 ->schema([
-                    Textarea::make('terms')->label(__('filament.offer.fields.terms'))->json()->columnSpanFull(),
-                    Textarea::make('qualification')->label(__('filament.offer.fields.qualification'))->json()->columnSpanFull(),
-                    Textarea::make('negotiation')->label(__('filament.offer.fields.negotiation'))->json()->columnSpanFull(),
-                    Textarea::make('proof')->label(__('filament.offer.fields.proof'))->json()->columnSpanFull(),
+                    self::jsonField('terms'),
+                    self::jsonField('qualification'),
+                    self::jsonField('negotiation'),
+                    self::jsonField('proof'),
                     Textarea::make('conditions')->label(__('filament.offer.fields.conditions'))->columnSpanFull(),
                 ]),
         ]);
+    }
+
+    private static function jsonField(string $name): Textarea
+    {
+        return Textarea::make($name)
+            ->label(__("filament.offer.fields.{$name}"))
+            ->json()
+            ->formatStateUsing(fn (mixed $state): string => is_array($state) ? json_encode($state, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT) : (string) $state)
+            ->dehydrateStateUsing(fn (?string $state): array => (array) json_decode($state ?? '', true))
+            ->columnSpanFull();
     }
 
     public static function table(Table $table): Table

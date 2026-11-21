@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Validation\ValidationException;
+use Liberu\RealEstate\Valuations\Application\CalculateCostOfMoving;
 use Liberu\RealEstate\Valuations\Application\CalculateStampDuty;
 use Liberu\RealEstate\ValuationsLivewire\Components\Calculators;
 use Livewire\Livewire;
@@ -22,7 +23,15 @@ it('provides the public calculator hub and delegates supported calculations', fu
 });
 
 it('rejects invalid calculator input before invoking domain logic', function (): void {
-    expect(fn () => app(CalculateStampDuty::class)->handle(-1, 'home_mover'))->toThrow(ValidationException::class);
-
     Livewire::test('test-calculators')->set('propertyPrice', 'not-a-number')->set('loanAmount', null)->set('interestRate', '')->set('loanTerm', 'abc')->call('calculateMortgage')->assertHasErrors(['propertyPrice', 'loanAmount', 'interestRate', 'loanTerm']);
+});
+
+it('rejects invalid purchase prices, buyer types, and moving distances', function (): void {
+    $stampDuty = app(CalculateStampDuty::class);
+    $costOfMoving = app(CalculateCostOfMoving::class);
+
+    expect(fn () => $stampDuty->handle(-1, 'home_mover'))->toThrow(ValidationException::class)
+        ->and(fn () => $stampDuty->handle(400000, 'unknown'))->toThrow(ValidationException::class)
+        ->and(fn () => $costOfMoving->handle(0))->toThrow(ValidationException::class)
+        ->and(fn () => $costOfMoving->handle(400000, false, -1))->toThrow(ValidationException::class);
 });

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Liberu\RealEstate\ViewingsLivewire\Components;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Liberu\RealEstate\Viewings\Application\CancelViewing;
 use Liberu\RealEstate\Viewings\Application\ConfirmViewing;
 use Liberu\RealEstate\Viewings\Application\MarkViewingNoShow;
@@ -40,7 +41,9 @@ final class ViewingList extends Component
     public function render(): View
     {
         $teamId = auth()->user()?->current_team_id;
-        $viewings = $teamId === null ? collect() : Viewing::query()->forTeam($teamId)->when($this->search !== '', fn ($query) => $query->where('subject', 'like', '%'.$this->search.'%'))->latest('starts_at')->paginate(20);
+        $viewings = $teamId === null
+            ? new LengthAwarePaginator([], 0, 20)
+            : Viewing::query()->forTeam($teamId)->when($this->search !== '', fn ($query) => $query->where('subject', 'like', '%'.$this->search.'%'))->latest('starts_at')->paginate(20);
 
         return view('real-estate-viewings-livewire::viewing-list', ['viewings' => $viewings]);
     }

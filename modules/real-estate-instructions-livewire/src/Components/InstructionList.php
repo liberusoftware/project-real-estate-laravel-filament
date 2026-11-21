@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Liberu\RealEstate\InstructionsLivewire\Components;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Liberu\RealEstate\Instructions\Application\TransitionInstruction;
 use Liberu\RealEstate\Instructions\Domain\InstructionStatus;
 use Liberu\RealEstate\Instructions\Models\Instruction;
@@ -20,33 +21,35 @@ final class InstructionList extends Component
 
     public function submitInstruction(int $instructionId, TransitionInstruction $transition): void
     {
-        $this->transition($instructionId, InstructionStatus::PendingApproval, $transition);
+        $this->transitionInstruction($instructionId, InstructionStatus::PendingApproval, $transition);
     }
 
     public function approveInstruction(int $instructionId, TransitionInstruction $transition): void
     {
-        $this->transition($instructionId, InstructionStatus::Approved, $transition);
+        $this->transitionInstruction($instructionId, InstructionStatus::Approved, $transition);
     }
 
     public function rejectInstruction(int $instructionId, TransitionInstruction $transition): void
     {
-        $this->transition($instructionId, InstructionStatus::Rejected, $transition);
+        $this->transitionInstruction($instructionId, InstructionStatus::Rejected, $transition);
     }
 
     public function withdrawInstruction(int $instructionId, TransitionInstruction $transition): void
     {
-        $this->transition($instructionId, InstructionStatus::Withdrawn, $transition);
+        $this->transitionInstruction($instructionId, InstructionStatus::Withdrawn, $transition);
     }
 
     public function render(): View
     {
         $teamId = auth()->user()?->current_team_id;
-        $instructions = $teamId === null ? collect() : Instruction::query()->forTeam($teamId)->when($this->search !== '', fn ($query) => $query->where('subject', 'like', '%'.$this->search.'%'))->latest()->paginate(20);
+        $instructions = $teamId === null
+            ? new LengthAwarePaginator([], 0, 20)
+            : Instruction::query()->forTeam($teamId)->when($this->search !== '', fn ($query) => $query->where('subject', 'like', '%'.$this->search.'%'))->latest()->paginate(20);
 
         return view('real-estate-instructions-livewire::instruction-list', ['instructions' => $instructions]);
     }
 
-    private function transition(int $instructionId, InstructionStatus $status, TransitionInstruction $transition): void
+    private function transitionInstruction(int $instructionId, InstructionStatus $status, TransitionInstruction $transition): void
     {
         $user = auth()->user();
         abort_unless($user?->current_team_id !== null, 403);

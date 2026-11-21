@@ -84,7 +84,7 @@ final class GeneratePropertyValuation
             'is_for_sale' => in_array($status, ['for_sale', 'available'], true) ? 1 : 0,
             'is_for_rent' => in_array($status, ['for_rent', 'let'], true) ? 1 : 0,
             'is_featured' => ! empty($property['is_featured']) ? 1 : 0,
-            'days_on_market' => isset($property['list_date']) ? max(0, (int) now()->diffInDays($property['list_date'])) : 0,
+            'days_on_market' => isset($property['list_date']) ? max(0, (int) -now()->diffInDays($property['list_date'])) : 0,
             'price_per_sqft' => $area > 0 ? $price / $area : 0,
         ];
     }

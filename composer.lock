@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e85f00ebfede2960122774e94cb715f1",
+    "content-hash": "a7651c09609e845ca7f05d489cabe583",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -7679,16 +7679,16 @@
         },
         {
             "name": "liberusoftware/analytics-core-filament",
-            "version": "1.2.2",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-analytics-core-filament.git",
-                "reference": "909fd66cea8f74e896f6dd476ccb7a54d2d7eb55"
+                "reference": "87296a2bf418486a5a776fb019fe4486ec956989"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-analytics-core-filament/zipball/909fd66cea8f74e896f6dd476ccb7a54d2d7eb55",
-                "reference": "909fd66cea8f74e896f6dd476ccb7a54d2d7eb55",
+                "url": "https://api.github.com/repos/liberusoftware/module-analytics-core-filament/zipball/87296a2bf418486a5a776fb019fe4486ec956989",
+                "reference": "87296a2bf418486a5a776fb019fe4486ec956989",
                 "shasum": ""
             },
             "require": {
@@ -7721,9 +7721,9 @@
             "description": "Analytics Core filament presentation adapter.",
             "support": {
                 "issues": "https://github.com/liberusoftware/module-analytics-core-filament/issues",
-                "source": "https://github.com/liberusoftware/module-analytics-core-filament/tree/v1.2.2"
+                "source": "https://github.com/liberusoftware/module-analytics-core-filament/tree/v1.2.1"
             },
-            "time": "2026-11-14T14:29:36+00:00"
+            "time": "2026-11-02T16:44:24+00:00"
         },
         {
             "name": "liberusoftware/analytics-core-livewire",
@@ -8254,16 +8254,16 @@
         },
         {
             "name": "liberusoftware/api-access-filament",
-            "version": "1.1.2",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-api-access-filament.git",
-                "reference": "2c7e55462aff8edb4171123ed28342c21c70249b"
+                "reference": "189fddb1b5ff369a6eb8cf18605595632514873c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-api-access-filament/zipball/2c7e55462aff8edb4171123ed28342c21c70249b",
-                "reference": "2c7e55462aff8edb4171123ed28342c21c70249b",
+                "url": "https://api.github.com/repos/liberusoftware/module-api-access-filament/zipball/189fddb1b5ff369a6eb8cf18605595632514873c",
+                "reference": "189fddb1b5ff369a6eb8cf18605595632514873c",
                 "shasum": ""
             },
             "require": {
@@ -8296,9 +8296,9 @@
             "description": "API Access filament presentation adapter.",
             "support": {
                 "issues": "https://github.com/liberusoftware/module-api-access-filament/issues",
-                "source": "https://github.com/liberusoftware/module-api-access-filament/tree/v1.1.2"
+                "source": "https://github.com/liberusoftware/module-api-access-filament/tree/v1.1.1"
             },
-            "time": "2026-11-14T14:29:37+00:00"
+            "time": "2026-11-02T16:44:54+00:00"
         },
         {
             "name": "liberusoftware/api-access-livewire",
@@ -9772,12 +9772,6 @@
                 "url": "https://github.com/liberusoftware/module-identity-socialstream.git",
                 "reference": "6f1562d9e9dfbc0246446b11b6b5c7f5ef0d6c1d"
             },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-identity-socialstream/zipball/6f1562d9e9dfbc0246446b11b6b5c7f5ef0d6c1d",
-                "reference": "6f1562d9e9dfbc0246446b11b6b5c7f5ef0d6c1d",
-                "shasum": ""
-            },
             "require": {
                 "bursteri/socialstream": "^7.0.0",
                 "laravel/socialite": "^5.31.0",
@@ -9802,15 +9796,20 @@
                     "Liberu\\Foundation\\Identity\\Socialstream\\Database\\Factories\\": "database/factories/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\Identity\\Socialstream\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Socialstream/Socialite identity-linking provider adapter.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-identity-socialstream/issues",
-                "source": "https://github.com/liberusoftware/module-identity-socialstream/tree/v1.8.2"
-            },
             "time": "2026-11-14T16:27:20+00:00"
         },
         {
@@ -10006,17 +10005,11 @@
         },
         {
             "name": "liberusoftware/integrations",
-            "version": "1.8.1",
+            "version": "1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-integrations.git",
-                "reference": "3dbbd7e7c141b183c54ae6e71202efcfc7fa5505"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-integrations/zipball/3dbbd7e7c141b183c54ae6e71202efcfc7fa5505",
-                "reference": "3dbbd7e7c141b183c54ae6e71202efcfc7fa5505",
-                "shasum": ""
+                "reference": "57e4abb5fa2da5cc0ece6115a706726e1889fd6b"
             },
             "require": {
                 "illuminate/database": "^13.38.0",
@@ -10039,16 +10032,21 @@
                     "Liberu\\Foundation\\Integrations\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\Integrations\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Provider adapter registry and protected connection lifecycle.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-integrations/issues",
-                "source": "https://github.com/liberusoftware/module-integrations/tree/v1.8.1"
-            },
-            "time": "2026-11-13T15:34:27+00:00"
+            "time": "2026-11-14T15:23:44+00:00"
         },
         {
             "name": "liberusoftware/integrations-api",
@@ -10431,12 +10429,6 @@
                 "url": "https://github.com/liberusoftware/module-localization-core.git",
                 "reference": "58ad01d917179b5b06e0a45e49314fb006738a16"
             },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-localization-core/zipball/58ad01d917179b5b06e0a45e49314fb006738a16",
-                "reference": "58ad01d917179b5b06e0a45e49314fb006738a16",
-                "shasum": ""
-            },
             "require": {
                 "illuminate/contracts": "^13.38.0",
                 "illuminate/http": "^13.38.0",
@@ -10461,15 +10453,23 @@
                     "Liberu\\Foundation\\Localization\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\Localization\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ],
+                "test:coverage": [
+                    "pest --coverage --min=100"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Locale resolution, preferences, propagation, and UI direction for Liberu applications.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-localization-core/issues",
-                "source": "https://github.com/liberusoftware/module-localization-core/tree/v1.5.1"
-            },
             "time": "2026-11-14T01:53:34+00:00"
         },
         {
@@ -10571,17 +10571,11 @@
         },
         {
             "name": "liberusoftware/localization-core-livewire",
-            "version": "1.5.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/liberusoftware/module-localization-core-livewire.git",
-                "reference": "94fc0fbc1f82d1a9edd821eaacf33a71a4c1946e"
-            },
+            "version": "1.4.1",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-localization-core-livewire/zipball/94fc0fbc1f82d1a9edd821eaacf33a71a4c1946e",
-                "reference": "94fc0fbc1f82d1a9edd821eaacf33a71a4c1946e",
-                "shasum": ""
+                "type": "path",
+                "url": "modules/localization-core-livewire",
+                "reference": "d968e132ee66806d22cd5c50106b1a9485f87202"
             },
             "require": {
                 "liberusoftware/localization-core": "^1.0",
@@ -10604,16 +10598,24 @@
                     "Liberu\\Foundation\\LocalizationLivewire\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\LocalizationLivewire\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Livewire locale-switching presentation adapter for Liberu Localization.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-localization-core-livewire/issues",
-                "source": "https://github.com/liberusoftware/module-localization-core-livewire/tree/v1.5.2"
-            },
-            "time": "2026-11-02T16:49:50+00:00"
+            "transport-options": {
+                "symlink": false,
+                "relative": true
+            }
         },
         {
             "name": "liberusoftware/localization-mymemory",
@@ -10622,12 +10624,6 @@
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-localization-mymemory.git",
                 "reference": "1c453269cd2439f792b6d2e64238d91ffe91ce1a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-localization-mymemory/zipball/1c453269cd2439f792b6d2e64238d91ffe91ce1a",
-                "reference": "1c453269cd2439f792b6d2e64238d91ffe91ce1a",
-                "shasum": ""
             },
             "require": {
                 "illuminate/cache": "^13.38.0",
@@ -10651,30 +10647,29 @@
                     "Liberu\\Foundation\\Localization\\MyMemory\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\Localization\\MyMemory\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "MyMemory machine-translation adapter for Liberu Localization.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-localization-mymemory/issues",
-                "source": "https://github.com/liberusoftware/module-localization-mymemory/tree/v1.5.1"
-            },
             "time": "2026-11-14T17:12:57+00:00"
         },
         {
             "name": "liberusoftware/module-manager",
-            "version": "1.9.1",
+            "version": "1.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-module-manager.git",
-                "reference": "b06e3aec4bb45d74c0ecf0bdfb52964d07e714ce"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-module-manager/zipball/b06e3aec4bb45d74c0ecf0bdfb52964d07e714ce",
-                "reference": "b06e3aec4bb45d74c0ecf0bdfb52964d07e714ce",
-                "shasum": ""
+                "reference": "c78773cd1ce110f9c4c2560ab0c84d0ec9fe851a"
             },
             "require": {
                 "composer/semver": "^3.5.2",
@@ -10698,16 +10693,21 @@
                     "Liberu\\Foundation\\ModuleManager\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\ModuleManager\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Deterministic manifest discovery and runtime enablement for Liberu modules.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-module-manager/issues",
-                "source": "https://github.com/liberusoftware/module-module-manager/tree/1.9.1"
-            },
-            "time": "2026-11-12T23:08:09+00:00"
+            "time": "2026-11-14T15:53:24+00:00"
         },
         {
             "name": "liberusoftware/module-manager-api",
@@ -10760,17 +10760,11 @@
         },
         {
             "name": "liberusoftware/module-manager-filament",
-            "version": "1.11.1",
+            "version": "1.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-module-manager-filament.git",
-                "reference": "f6bdb12c7ce76e2a00c03ed9456fb8d23d3041e8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-module-manager-filament/zipball/f6bdb12c7ce76e2a00c03ed9456fb8d23d3041e8",
-                "reference": "f6bdb12c7ce76e2a00c03ed9456fb8d23d3041e8",
-                "shasum": ""
+                "reference": "dd7c98c89bff0c6b4cf1d1e26fdcc7ef83fb8a4b"
             },
             "require": {
                 "filament/filament": "^5.11.0",
@@ -10793,16 +10787,21 @@
                     "Liberu\\Foundation\\ModuleManagerFilament\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\ModuleManagerFilament\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Filament page for enabling and disabling Liberu feature modules.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-module-manager-filament/issues",
-                "source": "https://github.com/liberusoftware/module-module-manager-filament/tree/v1.11.1"
-            },
-            "time": "2026-11-14T17:21:33+00:00"
+            "time": "2026-11-14T17:39:48+00:00"
         },
         {
             "name": "liberusoftware/module-manager-livewire",
@@ -10811,12 +10810,6 @@
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-module-manager-livewire.git",
                 "reference": "1bbb6bfb60bcc07e71d754615e704878f8231a11"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-module-manager-livewire/zipball/1bbb6bfb60bcc07e71d754615e704878f8231a11",
-                "reference": "1bbb6bfb60bcc07e71d754615e704878f8231a11",
-                "shasum": ""
             },
             "require": {
                 "liberusoftware/module-manager": "^1.0",
@@ -10841,15 +10834,23 @@
                     "Liberu\\Foundation\\ModuleManagerLivewire\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\ModuleManagerLivewire\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ],
+                "test:coverage": [
+                    "pest --coverage --min=100"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Module Manager livewire presentation adapter.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-module-manager-livewire/issues",
-                "source": "https://github.com/liberusoftware/module-module-manager-livewire/tree/v1.0.4"
-            },
             "time": "2026-11-14T00:33:34+00:00"
         },
         {
@@ -11237,17 +11238,11 @@
         },
         {
             "name": "liberusoftware/organizations-teams",
-            "version": "1.10.1",
+            "version": "1.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-organizations-teams.git",
-                "reference": "9d4b8c819ef6874ae8864403dcbb2545f4315efc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-organizations-teams/zipball/9d4b8c819ef6874ae8864403dcbb2545f4315efc",
-                "reference": "9d4b8c819ef6874ae8864403dcbb2545f4315efc",
-                "shasum": ""
+                "reference": "03c888fe56380e6e728c9fd7588955fbdaa21ab2"
             },
             "require": {
                 "laravel/jetstream": "^5.5.3",
@@ -11272,16 +11267,21 @@
                     "Liberu\\Foundation\\Organizations\\Database\\Factories\\": "database/factories/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\Organizations\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Organization, team, membership, invitation, ownership, and context foundation.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-organizations-teams/issues",
-                "source": "https://github.com/liberusoftware/module-organizations-teams/tree/v1.10.1"
-            },
-            "time": "2026-11-13T15:34:36+00:00"
+            "time": "2026-11-14T18:22:22+00:00"
         },
         {
             "name": "liberusoftware/organizations-teams-api",
@@ -11334,16 +11334,16 @@
         },
         {
             "name": "liberusoftware/organizations-teams-filament",
-            "version": "1.6.2",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-organizations-teams-filament.git",
-                "reference": "5ee621d06806b82c2dd7cd762ed92a8411de968a"
+                "reference": "de89f51ab032fecb5124ad6579f68c773a908800"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-organizations-teams-filament/zipball/5ee621d06806b82c2dd7cd762ed92a8411de968a",
-                "reference": "5ee621d06806b82c2dd7cd762ed92a8411de968a",
+                "url": "https://api.github.com/repos/liberusoftware/module-organizations-teams-filament/zipball/de89f51ab032fecb5124ad6579f68c773a908800",
+                "reference": "de89f51ab032fecb5124ad6579f68c773a908800",
                 "shasum": ""
             },
             "require": {
@@ -11373,9 +11373,9 @@
             "description": "Filament administration adapter for organizations and teams.",
             "support": {
                 "issues": "https://github.com/liberusoftware/module-organizations-teams-filament/issues",
-                "source": "https://github.com/liberusoftware/module-organizations-teams-filament/tree/v1.6.2"
+                "source": "https://github.com/liberusoftware/module-organizations-teams-filament/tree/v1.6.1"
             },
-            "time": "2026-11-14T14:25:57+00:00"
+            "time": "2026-11-02T16:50:09+00:00"
         },
         {
             "name": "liberusoftware/organizations-teams-livewire",
@@ -11522,16 +11522,16 @@
         },
         {
             "name": "liberusoftware/profiles-filament",
-            "version": "1.1.2",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-profiles-filament.git",
-                "reference": "e84203f96f87f0a9c8071c9816008c36c0336e3d"
+                "reference": "fa5d5daf1b245411f9403c39f49c1400d91f83b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-profiles-filament/zipball/e84203f96f87f0a9c8071c9816008c36c0336e3d",
-                "reference": "e84203f96f87f0a9c8071c9816008c36c0336e3d",
+                "url": "https://api.github.com/repos/liberusoftware/module-profiles-filament/zipball/fa5d5daf1b245411f9403c39f49c1400d91f83b8",
+                "reference": "fa5d5daf1b245411f9403c39f49c1400d91f83b8",
                 "shasum": ""
             },
             "require": {
@@ -11564,9 +11564,9 @@
             "description": "Profiles filament presentation adapter.",
             "support": {
                 "issues": "https://github.com/liberusoftware/module-profiles-filament/issues",
-                "source": "https://github.com/liberusoftware/module-profiles-filament/tree/v1.1.2"
+                "source": "https://github.com/liberusoftware/module-profiles-filament/tree/v1.1.1"
             },
-            "time": "2026-11-14T14:29:33+00:00"
+            "time": "2026-11-02T16:47:54+00:00"
         },
         {
             "name": "liberusoftware/profiles-livewire",
@@ -12847,16 +12847,16 @@
         },
         {
             "name": "liberusoftware/real-estate-matching-filament",
-            "version": "1.0.2",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-real-estate-matching-filament.git",
-                "reference": "6192a7bd004cf0564bc28222b886851b2e752afd"
+                "reference": "fb695fd6f122cf945686ecab8dcf20abef39dd93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-real-estate-matching-filament/zipball/6192a7bd004cf0564bc28222b886851b2e752afd",
-                "reference": "6192a7bd004cf0564bc28222b886851b2e752afd",
+                "url": "https://api.github.com/repos/liberusoftware/module-real-estate-matching-filament/zipball/fb695fd6f122cf945686ecab8dcf20abef39dd93",
+                "reference": "fb695fd6f122cf945686ecab8dcf20abef39dd93",
                 "shasum": ""
             },
             "require": {
@@ -12885,9 +12885,9 @@
             "description": "Filament 5 adapter for real-estate matching.",
             "support": {
                 "issues": "https://github.com/liberusoftware/module-real-estate-matching-filament/issues",
-                "source": "https://github.com/liberusoftware/module-real-estate-matching-filament/tree/v1.0.2"
+                "source": "https://github.com/liberusoftware/module-real-estate-matching-filament/tree/v1.0.1"
             },
-            "time": "2026-11-14T14:31:03+00:00"
+            "time": "2026-10-26T23:17:58+00:00"
         },
         {
             "name": "liberusoftware/real-estate-matching-livewire",
@@ -13404,16 +13404,16 @@
         },
         {
             "name": "liberusoftware/real-estate-onthemarket-filament",
-            "version": "1.0.2",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-real-estate-onthemarket-filament.git",
-                "reference": "2c4da9caf78e85cc8d132897066b77b49443cc24"
+                "reference": "6b3a73d3c936411bdeb28831d0f03a23f1ef0611"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-real-estate-onthemarket-filament/zipball/2c4da9caf78e85cc8d132897066b77b49443cc24",
-                "reference": "2c4da9caf78e85cc8d132897066b77b49443cc24",
+                "url": "https://api.github.com/repos/liberusoftware/module-real-estate-onthemarket-filament/zipball/6b3a73d3c936411bdeb28831d0f03a23f1ef0611",
+                "reference": "6b3a73d3c936411bdeb28831d0f03a23f1ef0611",
                 "shasum": ""
             },
             "require": {
@@ -13442,9 +13442,9 @@
             "description": "Independent Filament adapter for OnTheMarket synchronization.",
             "support": {
                 "issues": "https://github.com/liberusoftware/module-real-estate-onthemarket-filament/issues",
-                "source": "https://github.com/liberusoftware/module-real-estate-onthemarket-filament/tree/v1.0.2"
+                "source": "https://github.com/liberusoftware/module-real-estate-onthemarket-filament/tree/v1.0.1"
             },
-            "time": "2026-11-14T14:31:04+00:00"
+            "time": "2026-10-26T23:18:36+00:00"
         },
         {
             "name": "liberusoftware/real-estate-onthemarket-livewire",
@@ -13954,16 +13954,16 @@
         },
         {
             "name": "liberusoftware/real-estate-properties-filament",
-            "version": "1.0.3",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-real-estate-properties-filament.git",
-                "reference": "b61d8505ae28fcfba20540a41afc30767dbf5885"
+                "reference": "0c6583dc38a82535675776b2c1da7e148d23cd66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-real-estate-properties-filament/zipball/b61d8505ae28fcfba20540a41afc30767dbf5885",
-                "reference": "b61d8505ae28fcfba20540a41afc30767dbf5885",
+                "url": "https://api.github.com/repos/liberusoftware/module-real-estate-properties-filament/zipball/0c6583dc38a82535675776b2c1da7e148d23cd66",
+                "reference": "0c6583dc38a82535675776b2c1da7e148d23cd66",
                 "shasum": ""
             },
             "require": {
@@ -13994,9 +13994,9 @@
             "description": "Filament 5 adapter for real-estate properties.",
             "support": {
                 "issues": "https://github.com/liberusoftware/module-real-estate-properties-filament/issues",
-                "source": "https://github.com/liberusoftware/module-real-estate-properties-filament/tree/v1.0.3"
+                "source": "https://github.com/liberusoftware/module-real-estate-properties-filament/tree/v1.0.2"
             },
-            "time": "2026-11-14T14:31:06+00:00"
+            "time": "2026-11-02T16:50:24+00:00"
         },
         {
             "name": "liberusoftware/real-estate-properties-livewire",
@@ -15327,17 +15327,11 @@
         },
         {
             "name": "liberusoftware/roles-permissions",
-            "version": "1.7.0",
+            "version": "1.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-roles-permissions.git",
-                "reference": "f1eb827d80c2d085f2752bca85a6f34fd5737300"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-roles-permissions/zipball/f1eb827d80c2d085f2752bca85a6f34fd5737300",
-                "reference": "f1eb827d80c2d085f2752bca85a6f34fd5737300",
-                "shasum": ""
+                "reference": "cb99e2f8ec075b52ed3cb61322b36c646163f330"
             },
             "require": {
                 "liberusoftware/module-manager": "^1.0",
@@ -15360,16 +15354,21 @@
                     "Liberu\\Foundation\\RolesPermissions\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\RolesPermissions\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Contextual roles, permissions, policies, and authorization safeguards.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-roles-permissions/issues",
-                "source": "https://github.com/liberusoftware/module-roles-permissions/tree/v1.7.0"
-            },
-            "time": "2026-11-05T21:46:35+00:00"
+            "time": "2026-11-14T15:34:31+00:00"
         },
         {
             "name": "liberusoftware/roles-permissions-api",
@@ -15474,12 +15473,6 @@
                 "url": "https://github.com/liberusoftware/module-roles-permissions-livewire.git",
                 "reference": "143a4bc0d1de592c91e8c5533f98f7ca530905da"
             },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-roles-permissions-livewire/zipball/143a4bc0d1de592c91e8c5533f98f7ca530905da",
-                "reference": "143a4bc0d1de592c91e8c5533f98f7ca530905da",
-                "shasum": ""
-            },
             "require": {
                 "liberusoftware/roles-permissions": "^1.0",
                 "livewire/livewire": "^4.4.8",
@@ -15503,15 +15496,23 @@
                     "Liberu\\Foundation\\RolesPermissionsLivewire\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\RolesPermissionsLivewire\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ],
+                "test:coverage": [
+                    "pest --coverage --min=100"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Roles and Permissions livewire presentation adapter.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-roles-permissions-livewire/issues",
-                "source": "https://github.com/liberusoftware/module-roles-permissions-livewire/tree/v1.1.1"
-            },
             "time": "2026-11-14T00:39:17+00:00"
         },
         {
@@ -15666,12 +15667,6 @@
                 "url": "https://github.com/liberusoftware/module-scheduler-queues-livewire.git",
                 "reference": "79488fea8cb568a608e5295b9c3178132726ad11"
             },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-scheduler-queues-livewire/zipball/79488fea8cb568a608e5295b9c3178132726ad11",
-                "reference": "79488fea8cb568a608e5295b9c3178132726ad11",
-                "shasum": ""
-            },
             "require": {
                 "liberusoftware/scheduler-queues": "^1.0",
                 "livewire/livewire": "^4.4.8",
@@ -15695,15 +15690,23 @@
                     "Liberu\\Foundation\\SchedulerQueuesLivewire\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\SchedulerQueuesLivewire\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ],
+                "test:coverage": [
+                    "pest --coverage --min=100"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Scheduler and Queues livewire presentation adapter.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-scheduler-queues-livewire/issues",
-                "source": "https://github.com/liberusoftware/module-scheduler-queues-livewire/tree/v1.1.1"
-            },
             "time": "2026-11-14T00:40:22+00:00"
         },
         {
@@ -15801,16 +15804,16 @@
         },
         {
             "name": "liberusoftware/search-filament",
-            "version": "1.1.2",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-search-filament.git",
-                "reference": "fde1a11421b0a3ee4f88cfd09d005ee338cfe075"
+                "reference": "49379322aa8ba8d0e49ed088883638018fb41041"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-search-filament/zipball/fde1a11421b0a3ee4f88cfd09d005ee338cfe075",
-                "reference": "fde1a11421b0a3ee4f88cfd09d005ee338cfe075",
+                "url": "https://api.github.com/repos/liberusoftware/module-search-filament/zipball/49379322aa8ba8d0e49ed088883638018fb41041",
+                "reference": "49379322aa8ba8d0e49ed088883638018fb41041",
                 "shasum": ""
             },
             "require": {
@@ -15843,9 +15846,9 @@
             "description": "Search filament presentation adapter.",
             "support": {
                 "issues": "https://github.com/liberusoftware/module-search-filament/issues",
-                "source": "https://github.com/liberusoftware/module-search-filament/tree/v1.1.2"
+                "source": "https://github.com/liberusoftware/module-search-filament/tree/v1.1.1"
             },
-            "time": "2026-11-14T14:29:35+00:00"
+            "time": "2026-11-02T17:37:09+00:00"
         },
         {
             "name": "liberusoftware/search-livewire",
@@ -15897,17 +15900,11 @@
         },
         {
             "name": "liberusoftware/sessions-devices",
-            "version": "1.5.1",
+            "version": "1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-sessions-devices.git",
-                "reference": "50174438d8f823f16390ca06093f67967ccb5c1d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-sessions-devices/zipball/50174438d8f823f16390ca06093f67967ccb5c1d",
-                "reference": "50174438d8f823f16390ca06093f67967ccb5c1d",
-                "shasum": ""
+                "reference": "f76f707dc3b657ab1cca20d56fd33286bb97b7e5"
             },
             "require": {
                 "illuminate/database": "^13.38.0",
@@ -15930,16 +15927,21 @@
                     "Liberu\\Foundation\\Sessions\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\Sessions\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Privacy-conscious session inventory and revocation.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-sessions-devices/issues",
-                "source": "https://github.com/liberusoftware/module-sessions-devices/tree/v1.5.1"
-            },
-            "time": "2026-11-02T16:44:52+00:00"
+            "time": "2026-11-14T15:52:34+00:00"
         },
         {
             "name": "liberusoftware/sessions-devices-api",
@@ -16085,17 +16087,11 @@
         },
         {
             "name": "liberusoftware/settings",
-            "version": "1.5.2",
+            "version": "1.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-settings.git",
-                "reference": "c5abc43443553338abd4c7601f9f9f8b14a0647c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-settings/zipball/c5abc43443553338abd4c7601f9f9f8b14a0647c",
-                "reference": "c5abc43443553338abd4c7601f9f9f8b14a0647c",
-                "shasum": ""
+                "reference": "b2fbb2a2efbb67746b4ea6986fc8064e71e3dac0"
             },
             "require": {
                 "liberusoftware/module-manager": "^1.0",
@@ -16117,16 +16113,21 @@
                     "Liberu\\Foundation\\Settings\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\Settings\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Typed scoped settings foundation for Liberu applications.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-settings/issues",
-                "source": "https://github.com/liberusoftware/module-settings/tree/v1.5.2"
-            },
-            "time": "2026-11-02T17:37:19+00:00"
+            "time": "2026-11-14T17:08:54+00:00"
         },
         {
             "name": "liberusoftware/settings-api",
@@ -16228,17 +16229,11 @@
         },
         {
             "name": "liberusoftware/settings-livewire",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-settings-livewire.git",
-                "reference": "9175b5d42549b14c527149ff35a460017b89bf6a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-settings-livewire/zipball/9175b5d42549b14c527149ff35a460017b89bf6a",
-                "reference": "9175b5d42549b14c527149ff35a460017b89bf6a",
-                "shasum": ""
+                "reference": "f4f17bb0966cc9f6cb0751614cdb68cf929572d3"
             },
             "require": {
                 "liberusoftware/settings": "^1.0",
@@ -16263,16 +16258,24 @@
                     "Liberu\\Foundation\\SettingsLivewire\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\SettingsLivewire\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ],
+                "test:coverage": [
+                    "pest --coverage --min=100"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Settings livewire presentation adapter.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-settings-livewire/issues",
-                "source": "https://github.com/liberusoftware/module-settings-livewire/tree/v1.1.0"
-            },
-            "time": "2026-11-02T16:44:22+00:00"
+            "time": "2026-11-14T00:40:49+00:00"
         },
         {
             "name": "liberusoftware/tenancy",
@@ -16556,17 +16559,11 @@
         },
         {
             "name": "liberusoftware/theme-support",
-            "version": "1.8.3",
+            "version": "1.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-theme-support.git",
-                "reference": "419b4ce4d021061f8a9cace05319f7881c7db3f1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-theme-support/zipball/419b4ce4d021061f8a9cace05319f7881c7db3f1",
-                "reference": "419b4ce4d021061f8a9cace05319f7881c7db3f1",
-                "shasum": ""
+                "reference": "29e742bfbd0460fdf479cd30a471603c11df5073"
             },
             "require": {
                 "liberusoftware/module-manager": "^1.0",
@@ -16586,23 +16583,31 @@
                 }
             },
             "autoload": {
-                "files": [
-                    "src/Support/theme_helpers.php"
-                ],
                 "psr-4": {
                     "Liberu\\Foundation\\Theme\\": "src/"
-                }
+                },
+                "files": [
+                    "src/Support/theme_helpers.php"
+                ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\Theme\\Tests\\": "tests/"
+                },
+                "files": [
+                    "tests/Helpers.php"
+                ]
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Theme discovery and host presentation support for Liberu applications.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-theme-support/issues",
-                "source": "https://github.com/liberusoftware/module-theme-support/tree/v1.8.3"
-            },
-            "time": "2026-11-14T17:02:26+00:00"
+            "time": "2026-11-14T19:07:54+00:00"
         },
         {
             "name": "liberusoftware/theme-support-livewire",
@@ -16611,12 +16616,6 @@
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-theme-support-livewire.git",
                 "reference": "15ddc6d1bc121159ae721a0f72fa8bde9be5818c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-theme-support-livewire/zipball/15ddc6d1bc121159ae721a0f72fa8bde9be5818c",
-                "reference": "15ddc6d1bc121159ae721a0f72fa8bde9be5818c",
-                "shasum": ""
             },
             "require": {
                 "liberusoftware/theme-support": "^1.0",
@@ -16640,30 +16639,29 @@
                     "Liberu\\Foundation\\ThemeSupportLivewire\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\ThemeSupportLivewire\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Livewire theme-switching presentation adapter for Liberu Theme Support.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-theme-support-livewire/issues",
-                "source": "https://github.com/liberusoftware/module-theme-support-livewire/tree/v1.6.2"
-            },
             "time": "2026-11-14T14:23:31+00:00"
         },
         {
             "name": "liberusoftware/two-factor-authentication",
-            "version": "1.4.6",
+            "version": "1.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-two-factor-authentication.git",
-                "reference": "3ca80cbc17980d9749faf765c0db847ba43c4d29"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liberusoftware/module-two-factor-authentication/zipball/3ca80cbc17980d9749faf765c0db847ba43c4d29",
-                "reference": "3ca80cbc17980d9749faf765c0db847ba43c4d29",
-                "shasum": ""
+                "reference": "bbba0489fb698d12d24e68156e677767379348dc"
             },
             "require": {
                 "illuminate/contracts": "^13.38.0",
@@ -16686,16 +16684,21 @@
                     "Liberu\\Foundation\\TwoFactor\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Liberu\\Foundation\\TwoFactor\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "pest"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "TOTP enforcement policy and one-time recovery-code primitives.",
-            "support": {
-                "issues": "https://github.com/liberusoftware/module-two-factor-authentication/issues",
-                "source": "https://github.com/liberusoftware/module-two-factor-authentication/tree/v1.4.6"
-            },
-            "time": "2026-11-02T16:45:30+00:00"
+            "time": "2026-11-14T15:58:35+00:00"
         },
         {
             "name": "liberusoftware/two-factor-authentication-api",

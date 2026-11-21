@@ -17,6 +17,6 @@ final class ViewingFeedbackRequested extends Mailable
 
     public function build(): self
     {
-        return $this->subject('Viewing feedback')->text('emails.viewing-feedback-requested');
+        return $this->subject('Viewing feedback')->text('real-estate-viewings::emails.viewing-feedback-requested');
     }
 }

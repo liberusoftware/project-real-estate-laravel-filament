@@ -39,6 +39,9 @@ return new class() extends Migration
     {
         Schema::dropIfExists('real_estate_offer_events');
         Schema::table('real_estate_offers', function (Blueprint $table): void {
+            $table->dropIndex(['negotiator_id']);
+        });
+        Schema::table('real_estate_offers', function (Blueprint $table): void {
             $table->dropColumn(['currency', 'negotiator_id', 'mortgage_status', 'chain_information', 'conditions', 'offered_at', 'responded_at']);
         });
     }

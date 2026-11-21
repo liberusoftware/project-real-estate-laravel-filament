@@ -8,6 +8,7 @@ use Illuminate\Validation\ValidationException;
 use Liberu\RealEstate\Viewings\Application\RequestViewingFeedback;
 use Liberu\RealEstate\Viewings\Application\SubmitViewingFeedback;
 use Liberu\RealEstate\Viewings\Application\SummarizeViewingFeedback;
+use Liberu\RealEstate\Viewings\Mail\ViewingFeedbackRequested;
 use Liberu\RealEstate\Viewings\Models\Viewing;
 use Liberu\RealEstate\Viewings\Models\ViewingFeedback;
 
@@ -39,4 +40,37 @@ it('summarizes submitted feedback by team and property', function (): void {
 
     $summary = app(SummarizeViewingFeedback::class)->handle(1, 7);
     expect($summary['total_viewings'])->toBe(2)->and($summary['average_overall_rating'])->toBe(3.5)->and($summary['would_make_offer_count'])->toBe(1)->and($summary['interested_viewers'])->toBe(1);
+});
+
+it('only collects valid ratings for completed viewings', function (): void {
+    Mail::fake();
+    $viewing = Viewing::query()->create([
+        'team_id' => 1,
+        'property_id' => 7,
+        'subject' => 'Viewing',
+        'status' => 'confirmed',
+        'starts_at' => now()->addDay(),
+    ]);
+    $requestFeedback = app(RequestViewingFeedback::class);
+
+    expect(fn () => $requestFeedback->handle($viewing, 'viewer@example.com', 'Viewer'))
+        ->toThrow(ValidationException::class, 'Viewing must be completed.');
+    Mail::assertNothingSent();
+    expect(ViewingFeedback::query()->exists())->toBeFalse();
+
+    $viewing->update(['status' => 'completed']);
+    $feedback = $requestFeedback->handle($viewing, 'viewer@example.com', 'Viewer');
+    $submitFeedback = app(SubmitViewingFeedback::class);
+
+    expect(fn () => $submitFeedback->handle($feedback, ['price_rating' => 0]))
+        ->toThrow(ValidationException::class, 'Rating must be between 1 and 5.')
+        ->and(fn () => $submitFeedback->handle($feedback, ['condition_rating' => 6]))
+        ->toThrow(ValidationException::class, 'Rating must be between 1 and 5.')
+        ->and($feedback->fresh()->hasBeenSubmitted())->toBeFalse();
+});
+
+it('renders the feedback request from the viewing module template', function (): void {
+    $mail = new ViewingFeedbackRequested(new ViewingFeedback());
+    $mail->assertHasSubject('Viewing feedback');
+    $mail->assertSeeInText('Please share your feedback for your recent viewing.');
 });

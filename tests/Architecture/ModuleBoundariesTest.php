@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\User;
 use Liberu\Foundation\ModuleManager\Exceptions\DependencyResolutionFailed;
 use Liberu\Foundation\ModuleManager\Manifest;
 use Liberu\Foundation\ModuleManager\ModuleRegistry;
+use Liberu\RealEstate\Application\Models\User as ModuleUser;
 
 /*
  * What is left here is the whole-graph rules: the ones that read every package at
@@ -40,6 +42,29 @@ function modulePhpFiles(string $module): array
 
     return array_values(array_filter(iterator_to_array($iterator), fn (SplFileInfo $file) => $file->isFile() && $file->getExtension() === 'php'));
 }
+
+it('keeps application behavior in modules and preserves the host user model name', function () {
+    $root = dirname(__DIR__, 2);
+    $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($root.'/app', FilesystemIterator::SKIP_DOTS));
+    $phpFiles = [];
+
+    foreach ($files as $file) {
+        if ($file->isFile() && $file->getExtension() === 'php') {
+            $phpFiles[] = $file->getPathname();
+        }
+    }
+
+    expect($phpFiles)->toBe([$root.'/app/Models/User.php']);
+
+    $userModel = new ReflectionClass(User::class);
+
+    expect(get_parent_class(User::class))->toBe(ModuleUser::class)
+        ->and($userModel->getTraitNames())->toBe([]);
+
+    foreach ([...$userModel->getMethods(), ...$userModel->getProperties(), ...$userModel->getReflectionConstants()] as $member) {
+        expect($member->getDeclaringClass()->getName())->not->toBe(User::class);
+    }
+});
 
 it('lets every package install standalone', function () {
     $root = dirname(__DIR__, 2);

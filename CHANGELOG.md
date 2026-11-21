@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [11.2.0] - 2026-11-21
+
+### Added
+- Feature coverage for real-estate workflows, API routes, Filament resources, organization migrations, and portable module migrations.
+- Standalone test setups for additional foundation modules.
+
+### Changed
+- Harden tenant checks and workflow actions across listings, offers, and real-estate Livewire components.
+- Preserve structured property and match-profile data through API and Filament forms.
+
+### Fixed
+- Correct viewing time validation and timezone handling, property valuation date calculations, and JSON persistence for parking and garden attributes.
+
 ## [11.1.1] - 2026-11-05
 
 ### Added
