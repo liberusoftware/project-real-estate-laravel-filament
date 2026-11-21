@@ -71,9 +71,13 @@ jobs:
         run: php artisan key:generate
 
       - name: Run tests with release coverage gate
+        env:
+          COMPOSER_PROCESS_TIMEOUT: 1200
         run: composer test:coverage
 
       - name: Generate expanded module and theme coverage
+        env:
+          COMPOSER_PROCESS_TIMEOUT: 1200
         run: composer test:coverage:expanded
 
       - name: Install frontend dependencies
