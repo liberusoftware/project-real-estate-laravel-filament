@@ -25,7 +25,7 @@ final class MarketingCampaignList extends Component
         app(UpdateMarketingCampaignSection::class)->handle($campaign, $teamId, MarketingCampaignSection::from($section), $value);
     }
 
-    public function transition(int $campaignId, string $status): void
+    public function transitionCampaign(int $campaignId, string $status): void
     {
         $teamId = (int) auth()->user()->current_team_id;
         $campaign = MarketingCampaign::query()->forTeam($teamId)->findOrFail($campaignId);

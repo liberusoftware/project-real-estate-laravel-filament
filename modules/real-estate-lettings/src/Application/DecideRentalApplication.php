@@ -19,7 +19,7 @@ final class DecideRentalApplication
         if (! in_array($decision, [RentalApplicationStatus::Approved->value, RentalApplicationStatus::Rejected->value], true)) {
             throw ValidationException::withMessages(['decision' => 'Choose approved or rejected.']);
         }
-        if ($decision === RentalApplicationStatus::Approved && ! $application->isScreeningPassed()) {
+        if ($decision === RentalApplicationStatus::Approved->value && ! $application->isScreeningPassed()) {
             throw ValidationException::withMessages(['decision' => 'The application must pass screening before approval.']);
         }
 

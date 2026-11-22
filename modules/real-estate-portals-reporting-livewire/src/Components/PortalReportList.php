@@ -24,7 +24,7 @@ final class PortalReportList extends Component
         app(RecordPortalMetric::class)->handle($report, $teamId, PortalMetric::from($metric), $value);
     }
 
-    public function transition(int $reportId, string $status): void
+    public function transitionReport(int $reportId, string $status): void
     {
         $teamId = (int) auth()->user()->current_team_id;
         $report = PortalReport::query()->forTeam($teamId)->findOrFail($reportId);

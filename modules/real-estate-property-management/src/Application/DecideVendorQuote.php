@@ -19,7 +19,7 @@ final class DecideVendorQuote
         if (! in_array($decision, [VendorQuoteStatus::Accepted->value, VendorQuoteStatus::Rejected->value], true)) {
             throw ValidationException::withMessages(['decision' => 'Choose accepted or rejected.']);
         }
-        if ($decision === VendorQuoteStatus::Rejected && blank($rejectionReason)) {
+        if ($decision === VendorQuoteStatus::Rejected->value && blank($rejectionReason)) {
             throw ValidationException::withMessages(['rejection_reason' => 'A rejection reason is required.']);
         }
         $quote->forceFill(['status' => $decision, 'approved_by' => $decision === VendorQuoteStatus::Accepted->value ? $actorId : null, 'rejection_reason' => $rejectionReason])->save();

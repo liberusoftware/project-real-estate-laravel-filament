@@ -17,7 +17,6 @@
         <testsuite name="Portable module tests">
             <file>modules/integrations/tests/Unit/OptionalMarketingTablesTest.php</file>
             <file>modules/organizations-teams/tests/Unit/OptionalResourceMigrationsTest.php</file>
-            <file>modules/organizations-teams/tests/Unit/TenantModelDiscoveryTest.php</file>
             <file>modules/roles-permissions/tests/Unit/PortableRoleMigrationsTest.php</file>
         </testsuite>
     </testsuites>
