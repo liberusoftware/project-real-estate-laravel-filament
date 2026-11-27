@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7fb7ae31f12f91f11d191247a6d1155",
+    "content-hash": "8aaa91ac8cb5a8515069863bf1b64710",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -15329,15 +15329,14 @@
         },
         {
             "name": "liberusoftware/roles-permissions",
-            "version": "1.7.2",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liberusoftware/module-roles-permissions.git",
-                "reference": "cb99e2f8ec075b52ed3cb61322b36c646163f330"
+                "reference": "e877f74e5f53d62314aae9d6383414508d9ab6b7"
             },
             "require": {
                 "liberusoftware/module-manager": "^1.0",
-                "liberusoftware/organizations-teams": "^1.0",
                 "php": "^8.5",
                 "spatie/laravel-permission": "^8.3.2"
             },
@@ -15370,7 +15369,7 @@
                 "MIT"
             ],
             "description": "Contextual roles, permissions, policies, and authorization safeguards.",
-            "time": "2026-11-14T15:34:31+00:00"
+            "time": "2026-11-22T04:51:02+00:00"
         },
         {
             "name": "liberusoftware/roles-permissions-api",

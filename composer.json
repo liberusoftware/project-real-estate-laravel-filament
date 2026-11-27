@@ -193,7 +193,7 @@
         "liberusoftware/real-estate-zoopla-api": "^1.0",
         "liberusoftware/real-estate-zoopla-filament": "^1.0",
         "liberusoftware/real-estate-zoopla-livewire": "^1.0",
-        "liberusoftware/roles-permissions": "^1.0",
+        "liberusoftware/roles-permissions": "^1.9.0",
         "liberusoftware/roles-permissions-api": "^1.0",
         "liberusoftware/roles-permissions-filament": "^1.0",
         "liberusoftware/roles-permissions-livewire": "^1.0",
